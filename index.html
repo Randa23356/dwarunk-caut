@@ -139,6 +139,17 @@
   </header>
 
 <style>
+
+  .hero {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+.hero.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+  
 .typing-box {
   font-size: 1.2rem;
   text-align: center;
@@ -170,7 +181,10 @@
 
 <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 <script>
-  const typed = new Typed(".typing", {
+  let typedInstance;
+function startTyping() {
+  if (typedInstance) typedInstance.destroy(); // Reset kalau sudah ada
+  typedInstance = new Typed(".typing", {
     strings: [
       `<h2>Halo, Saya <span class='name-highlight'>Arman Wiranda</span></h2><br><p>Junior Developer | Laravel Enthusiast</p>`
     ],
@@ -179,6 +193,22 @@
     showCursor: false,
     loop: false
   });
+}
+
+  // Hero section fade-in
+const hero = document.querySelector('.hero');
+const heroObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      hero.classList.add('active');
+      startTyping(); // ulangi typing saat hero
+    } else {
+      hero.classList.remove('active');
+    }
+  });
+}, { threshold: 0.3 });
+
+heroObserver.observe(hero);
 </script>
 
   <section id="about" class="section">
