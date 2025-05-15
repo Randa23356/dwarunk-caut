@@ -256,16 +256,22 @@ document.querySelectorAll('.section').forEach(section => {
   observer.observe(section);
 });
 
-    // Animasi saat scroll ke skill
+    // Ambil elemen skill section dan semua progress bar
 const skillSection = document.querySelector('#skills');
 const progressBars = document.querySelectorAll('.progress-bar');
 
+// Observer untuk skill progress
 const skillObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       progressBars.forEach(bar => {
         const percent = bar.getAttribute('data-percent');
         bar.style.width = percent + '%';
+      });
+    } else {
+      // Reset saat keluar dari viewport
+      progressBars.forEach(bar => {
+        bar.style.width = '0';
       });
     }
   });
