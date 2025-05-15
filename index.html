@@ -7,314 +7,283 @@
   <link rel="stylesheet" href="style.css" />
   <style>
     :root {
-  --primary: #0f172a;
-  --accent: #38bdf8;
-  --light: #f8fafc;
-  --dark: #1e293b;
-}
+      --primary: #0f172a;
+      --accent: #38bdf8;
+      --light: #f8fafc;
+      --dark: #1e293b;
+    }
 
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: var(--primary);
-  color: var(--light);
-  scroll-behavior: smooth;
-}
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--primary);
+      color: var(--light);
+      scroll-behavior: smooth;
+    }
 
-.container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 2rem;
-}
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
 
-.hero {
-  background: linear-gradient(to right, #0f172a, #1e40af);
-  text-align: center;
-  padding: 5rem 2rem;
-  animation: fadeInUp 1s ease-out;
-}
+    .hero {
+      background: linear-gradient(to right, #0f172a, #1e40af);
+      text-align: center;
+      padding: 5rem 2rem;
+    }
 
-.hero h1 {
-  font-size: 2.5rem;
-}
+    .hero h1 {
+      font-size: 2.5rem;
+    }
 
-.hero span {
-  color: var(--accent);
-}
+    .hero span {
+      color: var(--accent);
+    }
 
-.section {
-  background: var(--primary);
-  padding: 4rem 2rem;
-}
+    .section {
+      background: var(--primary);
+      padding: 4rem 2rem;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-out;
+    }
 
-.section.alt {
-  background: var(--dark);
-}
+    .section.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.section-title {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: var(--accent);
-}
+    .section.alt {
+      background: var(--dark);
+    }
 
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 1rem;
-  margin-top: 2rem;
-}
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
 
-.skill-card {
-  background: #1e293b;
-  border: 1px solid var(--accent);
-  padding: 1rem;
-  text-align: center;
-  border-radius: 8px;
-  transition: transform 0.3s;
-  cursor: default;
-}
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
 
-.skill-card:hover {
-  transform: scale(1.05);
-  background: var(--accent);
-  color: var(--primary);
-}
+    .skill-card {
+      background: #1e293b;
+      border: 1px solid var(--accent);
+      padding: 1rem;
+      text-align: center;
+      border-radius: 8px;
+      transition: transform 0.3s;
+      cursor: default;
+    }
+
+    .skill-card:hover {
+      transform: scale(1.05);
+      background: var(--accent);
+      color: var(--primary);
+    }
 
     .profile-pic {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid var(--accent);
-  margin: 1rem auto 2rem;
-  display: block;
-  transition: transform 0.4s ease, box-shadow 0.4s;
-  box-shadow: 0 0 0 0 var(--accent);
-}
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent);
+      margin: 1rem auto 2rem;
+      display: block;
+      transition: transform 0.4s ease, box-shadow 0.4s;
+      box-shadow: 0 0 0 0 var(--accent);
+    }
 
-.profile-pic:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px 6px var(--accent);
-}
+    .profile-pic:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px 6px var(--accent);
+    }
 
-/* Skills Progress */
-.skills-list {
-  margin-top: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
+    .skills-list {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
 
-.skill span {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-}
+    .skill span {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
 
-.progress {
-  background: #334155;
-  height: 16px;
-  border-radius: 8px;
-  overflow: hidden;
-}
+    .progress {
+      background: #334155;
+      height: 16px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
 
-.progress-bar {
-  background: var(--accent);
-  height: 100%;
-  width: 0;
-  transition: width 1.5s ease-out;
-  border-radius: 8px;
-}
+    .progress-bar {
+      background: var(--accent);
+      height: 100%;
+      width: 0;
+      transition: width 1.5s ease-out;
+      border-radius: 8px;
+    }
 
-.footer {
-  text-align: center;
-  padding: 2rem;
-  font-size: 0.9rem;
-  background: #0f172a;
-  color: #94a3b8;
-}
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      background: #0f172a;
+      color: #94a3b8;
+    }
 
-/* Animations */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 1s forwards;
-}
-
-.fade-in.delay-1 {
-  animation-delay: 0.5s;
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-  .scroll-fade {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s ease-out;
-}
-
-.scroll-fade.active {
-  opacity: 1;
-  transform: translateY(0);
-}
     .card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-radius: 16px;
-  overflow: hidden;
-}
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 16px;
+      overflow: hidden;
+    }
 
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-}
-    
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .typing-text p {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+    }
+
+    .typing {
+      color: var(--accent);
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
   </style>
 </head>
 <body>
   <header class="hero">
     <img src="profile.jpg" alt="Foto Profil" class="profile-pic" />
     <div class="container typing-text">
-      <h1>Halo, Saya <span>Arman Wiranda</span></h1>
+      <h1>Halo, Saya <span class="typing"></span></h1>
       <p>Junior Developer | Laravel Enthusiast</p>
     </div>
   </header>
 
-  <section id="about" class="section scroll-fade card">
+  <section id="about" class="section card">
     <div class="container">
-      <h2 class="section-title fade-in">Tentang Saya</h2>
-      <p class="fade-in delay-1">Saya adalah seorang developer muda asal Lombok, fokus pada pengembangan web menggunakan Laravel dan JavaScript. Saat ini sedang kuliah di jurusan Teknik Informatika dan aktif dalam berbagai proyek software.</p>
+      <h2 class="section-title">Tentang Saya</h2>
+      <p>Saya adalah seorang developer muda asal Lombok, fokus pada pengembangan web menggunakan Laravel dan JavaScript. Saat ini sedang kuliah di jurusan Teknik Informatika dan aktif dalam berbagai proyek software.</p>
     </div>
   </section>
 
-  <section id="experience" class="section alt scroll-fade card">
+  <section id="experience" class="section alt card">
     <div class="container">
-      <h2 class="section-title fade-in">Pengalaman</h2>
-      <ul class="fade-in delay-1">
+      <h2 class="section-title">Pengalaman</h2>
+      <ul>
         <li><strong>Fullstack Developer</strong> - BlocDev (Magang)</li>
         <li><strong>Junior Developer</strong> - Infit (2024–2025)</li>
         <li>Membangun sistem kasir rental PS, portofolio Laravel, dan dashboard interaktif</li>
       </ul>
     </div>
   </section>
-  
- <section id="skills" class="card">
-<section id="skills" class="section">
-  <div class="container">
-    <h2 class="section-title ">Skills</h2>
-    <div class="skills-list">
-      <div class="skill">
-        <span>Laravel</span>
-        <div class="progress"><div class="progress-bar" data-percent="95"></div></div>
+
+  <section id="skills" class="section card">
+    <div class="container">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-list">
+        <div class="skill">
+          <span>Laravel</span>
+          <div class="progress"><div class="progress-bar" data-percent="95"></div></div>
+        </div>
+        <div class="skill">
+          <span>PHP Native</span>
+          <div class="progress"><div class="progress-bar" data-percent="90"></div></div>
+        </div>
+        <div class="skill">
+          <span>JavaScript</span>
+          <div class="progress"><div class="progress-bar" data-percent="90"></div></div>
+        </div>
+        <div class="skill">
+          <span>HTML/CSS</span>
+          <div class="progress"><div class="progress-bar" data-percent="96"></div></div>
+        </div>
+        <div class="skill">
+          <span>MySQL</span>
+          <div class="progress"><div class="progress-bar" data-percent="85"></div></div>
+        </div>
+        <div class="skill">
+          <span>Alpine.js</span>
+          <div class="progress"><div class="progress-bar" data-percent="80"></div></div>
+        </div>
+        <div class="skill">
+          <span>Next.js</span>
+          <div class="progress"><div class="progress-bar" data-percent="50"></div></div>
+        </div>
+        <div class="skill">
+          <span>React.js</span>
+          <div class="progress"><div class="progress-bar" data-percent="50"></div></div>
+        </div>
+        <div class="skill">
+          <span>Git & Github</span>
+          <div class="progress"><div class="progress-bar" data-percent="80"></div></div>
+        </div>
       </div>
-      <div class="skill">
-        <span>PHP Native</span>
-        <div class="progress"><div class="progress-bar" data-percent="90"></div></div>
-      </div>
-      <div class="skill">
-        <span>JavaScript</span>
-        <div class="progress"><div class="progress-bar" data-percent="90"></div></div>
-      </div>
-      <div class="skill">
-        <span>HTML/CSS</span>
-        <div class="progress"><div class="progress-bar" data-percent="96"></div></div>
-      </div>
-      <div class="skill">
-        <span>MySQL</span>
-        <div class="progress"><div class="progress-bar" data-percent="85"></div></div>
-      </div>
-      <div class="skill">
-        <span>Alpine.js</span>
-        <div class="progress"><div class="progress-bar" data-percent="80"></div></div>
-      </div>
-<div class="skill">
-        <span>Next.js</span>
-        <div class="progress"><div class="progress-bar" data-percent="50"></div></div>
-</div>
-<div class="skill">
-        <span>React.js</span>
-        <div class="progress"><div class="progress-bar" data-percent="50"></div></div>
-</div>
-<div class="skill">
-        <span>Git & Github</span>
-        <div class="progress"><div class="progress-bar" data-percent="80"></div></div>
-</div>
     </div>
-  </div>
-</section>
+  </section>
 
   <footer class="footer">
     <p>© 2025 Arman Wiranda. Dibuat dengan semangat & kopi.</p>
   </footer>
 
-  <script src="script.js"></script>
-  <script> 
-    // Animasi saat scroll
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('fade-in');
-    }
-  });
-});
-
-document.querySelectorAll('.section').forEach(section => {
-  observer.observe(section);
-});
-
-    // Ambil elemen skill section dan semua progress bar
-const skillSection = document.querySelector('#skills');
-const progressBars = document.querySelectorAll('.progress-bar');
-
-// Observer untuk skill progress
-const skillObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      progressBars.forEach(bar => {
-        const percent = bar.getAttribute('data-percent');
-        bar.style.width = percent + '%';
-      });
-    } else {
-      // Reset saat keluar dari viewport
-      progressBars.forEach(bar => {
-        bar.style.width = '0';
-      });
-    }
-  });
-}, { threshold: 0.3 });
-
-skillObserver.observe(skillSection);
-
-    // Animasi scroll muncul untuk teks
-document.addEventListener('DOMContentLoaded', () => {
-  const scrollElements = document.querySelectorAll('.scroll-fade');
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-        observer.unobserve(entry.target); // supaya animasi hanya sekali
-      }
+  <!-- Typed.js -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+    new Typed(".typing", {
+      strings: ["Arman Wiranda", "Junior Web Developer", "Laravel Enthusiast"],
+      typeSpeed: 60,
+      backSpeed: 40,
+      backDelay: 1500,
+      loop: true
     });
-  }, { threshold: 0.3 });
-
-  scrollElements.forEach(el => observer.observe(el));
-});
   </script>
-   <!-- Tambahkan ini sebelum </body> -->
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-<script>
-  const typed = new Typed(".typing-text", {
-    strings: ["Arman Wiranda", "Junior Web Developer", "Laravel Enthusiast"],
-    typeSpeed: 60,
-    backSpeed: 30,
-    backDelay: 1500,
-    loop: true
-  });
-</script>
+
+  <!-- Intersection Observer -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.section').forEach(section => {
+      observer.observe(section);
+    });
+
+    const skillSection = document.querySelector('#skills');
+    const progressBars = document.querySelectorAll('.progress-bar');
+
+    const skillObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          progressBars.forEach(bar => {
+            const percent = bar.getAttribute('data-percent');
+            bar.style.width = percent + '%';
+          });
+        } else {
+          progressBars.forEach(bar => {
+            bar.style.width = '0';
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+
+    skillObserver.observe(skillSection);
+  </script>
 </body>
 </html>
