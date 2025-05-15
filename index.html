@@ -140,6 +140,18 @@
       background: var(--primary);
       color: #94a3b8;
     }
+
+    body.focusing .section:not(.focused) {
+  opacity: 0.1;
+  filter: blur(2px);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.section.focused {
+  z-index: 10;
+  position: relative;
+}
   </style>
 </head>
 <body>
@@ -239,6 +251,20 @@
     });
   }, { threshold: 0.3 });
   skillObserver.observe(skillSection);
+
+  const sections = document.querySelectorAll('.section');
+
+sections.forEach(section => {
+  section.addEventListener('mouseenter', () => {
+    document.body.classList.add('focusing');
+    section.classList.add('focused');
+  });
+
+  section.addEventListener('mouseleave', () => {
+    document.body.classList.remove('focusing');
+    section.classList.remove('focused');
+  });
+});
 </script>
 </body>
 </html>
