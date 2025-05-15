@@ -124,13 +124,43 @@
   </style>
 </head>
 <body>
-  <header class="hero">
-    <img src="profile.jpg" alt="Foto Profil" class="profile-pic" />
-    <div class="container">
-      <h1>Halo, Saya <span class="typing"></span></h1>
-      <p>Junior Developer | Laravel Enthusiast</p>
+<header class="hero">
+  <img src="profile.jpg" alt="Foto Profil" class="profile-pic" />
+  <div class="container">
+    <div class="typing-box">
+      <span class="typing"></span>
     </div>
-  </header>
+  </div>
+</header>
+
+<!-- Di style.css atau <style> -->
+<style>
+.typing-box {
+  font-size: 1.5rem;
+  line-height: 1.8;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.typing-box h2,
+.typing-box p {
+  display: inline;
+}
+</style>
+
+<!-- Tambahkan di script -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+  const typed = new Typed(".typing", {
+    strings: [
+      `<h2>Halo, Saya <span style="color:#38bdf8;">Arman Wiranda</span></h2><br><p>Junior Developer | Laravel Enthusiast</p>`
+    ],
+    typeSpeed: 50,
+    backSpeed: 0,
+    showCursor: false,
+    loop: false
+  });
+</script>
 
   <section id="about" class="section">
     <div class="container">
@@ -170,21 +200,6 @@
   <footer class="footer">
     <p>© 2025 Arman Wiranda. Dibuat dengan semangat & kopi.</p>
   </footer>
-
-  <!-- Script: Typed.js -->
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-  <script>
-    const typed = new Typed(".typing", {
-      strings: ["Arman Wiranda", "Junior Web Developer", "Laravel Enthusiast"],
-      typeSpeed: 60,
-      backSpeed: 0,
-      backDelay: 3000,
-      loop: true,
-      smartBackspace: false,
-      showCursor: true,
-      fadeOut: false
-    });
-  </script>
 
   <!-- Scroll Animations -->
   <script>
