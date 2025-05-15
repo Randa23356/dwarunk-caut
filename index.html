@@ -162,6 +162,16 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+    .card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
     
   </style>
 </head>
@@ -174,14 +184,14 @@ body {
     </div>
   </header>
 
-  <section id="about" class="section scroll-fade">
-    <div class="container">
+  <section id="about" class="section scroll-fade card">
+    <div class="container typing-text">
       <h2 class="section-title">Tentang Saya</h2>
       <p>Saya adalah seorang developer muda asal Lombok, fokus pada pengembangan web menggunakan Laravel dan JavaScript. Saat ini sedang kuliah di jurusan Teknik Informatika dan aktif dalam berbagai proyek software.</p>
     </div>
   </section>
 
-  <section id="experience" class="section alt scroll-fade">
+  <section id="experience" class="section alt scroll-fade card">
     <div class="container">
       <h2 class="section-title">Pengalaman</h2>
       <ul>
@@ -192,7 +202,7 @@ body {
     </div>
   </section>
   
- <section id="skills">
+ <section id="skills" class="card">
 <section id="skills" class="section">
   <div class="container">
     <h2 class="section-title ">Skills</h2>
@@ -295,5 +305,16 @@ document.addEventListener('DOMContentLoaded', () => {
   scrollElements.forEach(el => observer.observe(el));
 });
   </script>
+   <!-- Tambahkan ini sebelum </body> -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+  const typed = new Typed(".typing-text", {
+    strings: ["Arman Wiranda", "Junior Web Developer", "Laravel Enthusiast"],
+    typeSpeed: 60,
+    backSpeed: 30,
+    backDelay: 1500,
+    loop: true
+  });
+</script>
 </body>
 </html>
