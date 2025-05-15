@@ -53,6 +53,11 @@
       transform: translateY(40px);
       transition: opacity 1s ease, transform 1s ease;
     }
+    .section:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
+  transition: all 0.3s ease;
+    }
 
     .section.alt {
       background: var(--dark);
@@ -222,6 +227,8 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
+        }else {
+      entry.target.classList.remove('active'); // tambahkan baris ini
         }
       });
     }, { threshold: 0.3 });
