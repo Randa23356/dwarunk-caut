@@ -41,12 +41,21 @@
       color: var(--accent);
     }
 
+    .typing {
+      color: var(--accent);
+      font-weight: bold;
+    }
+
     .section {
       background: var(--primary);
       padding: 4rem 2rem;
       opacity: 0;
       transform: translateY(40px);
-      transition: all 0.8s ease-out;
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .section.alt {
+      background: var(--dark);
     }
 
     .section.active {
@@ -54,54 +63,10 @@
       transform: translateY(0);
     }
 
-    .section.alt {
-      background: var(--dark);
-    }
-
     .section-title {
       font-size: 2rem;
       margin-bottom: 1rem;
       color: var(--accent);
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .skill-card {
-      background: #1e293b;
-      border: 1px solid var(--accent);
-      padding: 1rem;
-      text-align: center;
-      border-radius: 8px;
-      transition: transform 0.3s;
-      cursor: default;
-    }
-
-    .skill-card:hover {
-      transform: scale(1.05);
-      background: var(--accent);
-      color: var(--primary);
-    }
-
-    .profile-pic {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--accent);
-      margin: 1rem auto 2rem;
-      display: block;
-      transition: transform 0.4s ease, box-shadow 0.4s;
-      box-shadow: 0 0 0 0 var(--accent);
-    }
-
-    .profile-pic:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px 6px var(--accent);
     }
 
     .skills-list {
@@ -132,6 +97,23 @@
       border-radius: 8px;
     }
 
+    .profile-pic {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent);
+      margin: 1rem auto 2rem;
+      display: block;
+      transition: transform 0.4s ease, box-shadow 0.4s;
+      box-shadow: 0 0 0 0 var(--accent);
+    }
+
+    .profile-pic:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px 6px var(--accent);
+    }
+
     .footer {
       text-align: center;
       padding: 2rem;
@@ -139,47 +121,25 @@
       background: #0f172a;
       color: #94a3b8;
     }
-
-    .card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border-radius: 16px;
-      overflow: hidden;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-    }
-
-    .typing-text p {
-      font-size: 1.2rem;
-      margin-top: 0.5rem;
-    }
-
-    .typing {
-      color: var(--accent);
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
   </style>
 </head>
 <body>
   <header class="hero">
     <img src="profile.jpg" alt="Foto Profil" class="profile-pic" />
-    <div class="container typing-text">
+    <div class="container">
       <h1>Halo, Saya <span class="typing"></span></h1>
       <p>Junior Developer | Laravel Enthusiast</p>
     </div>
   </header>
 
-  <section id="about" class="section card">
+  <section id="about" class="section">
     <div class="container">
       <h2 class="section-title">Tentang Saya</h2>
       <p>Saya adalah seorang developer muda asal Lombok, fokus pada pengembangan web menggunakan Laravel dan JavaScript. Saat ini sedang kuliah di jurusan Teknik Informatika dan aktif dalam berbagai proyek software.</p>
     </div>
   </section>
 
-  <section id="experience" class="section alt card">
+  <section id="experience" class="section alt">
     <div class="container">
       <h2 class="section-title">Pengalaman</h2>
       <ul>
@@ -190,46 +150,19 @@
     </div>
   </section>
 
-  <section id="skills" class="section card">
+  <section id="skills" class="section">
     <div class="container">
       <h2 class="section-title">Skills</h2>
       <div class="skills-list">
-        <div class="skill">
-          <span>Laravel</span>
-          <div class="progress"><div class="progress-bar" data-percent="95"></div></div>
-        </div>
-        <div class="skill">
-          <span>PHP Native</span>
-          <div class="progress"><div class="progress-bar" data-percent="90"></div></div>
-        </div>
-        <div class="skill">
-          <span>JavaScript</span>
-          <div class="progress"><div class="progress-bar" data-percent="90"></div></div>
-        </div>
-        <div class="skill">
-          <span>HTML/CSS</span>
-          <div class="progress"><div class="progress-bar" data-percent="96"></div></div>
-        </div>
-        <div class="skill">
-          <span>MySQL</span>
-          <div class="progress"><div class="progress-bar" data-percent="85"></div></div>
-        </div>
-        <div class="skill">
-          <span>Alpine.js</span>
-          <div class="progress"><div class="progress-bar" data-percent="80"></div></div>
-        </div>
-        <div class="skill">
-          <span>Next.js</span>
-          <div class="progress"><div class="progress-bar" data-percent="50"></div></div>
-        </div>
-        <div class="skill">
-          <span>React.js</span>
-          <div class="progress"><div class="progress-bar" data-percent="50"></div></div>
-        </div>
-        <div class="skill">
-          <span>Git & Github</span>
-          <div class="progress"><div class="progress-bar" data-percent="80"></div></div>
-        </div>
+        <div class="skill"><span>Laravel</span><div class="progress"><div class="progress-bar" data-percent="95"></div></div></div>
+        <div class="skill"><span>PHP Native</span><div class="progress"><div class="progress-bar" data-percent="90"></div></div></div>
+        <div class="skill"><span>JavaScript</span><div class="progress"><div class="progress-bar" data-percent="90"></div></div></div>
+        <div class="skill"><span>HTML/CSS</span><div class="progress"><div class="progress-bar" data-percent="96"></div></div></div>
+        <div class="skill"><span>MySQL</span><div class="progress"><div class="progress-bar" data-percent="85"></div></div></div>
+        <div class="skill"><span>Alpine.js</span><div class="progress"><div class="progress-bar" data-percent="80"></div></div></div>
+        <div class="skill"><span>Next.js</span><div class="progress"><div class="progress-bar" data-percent="50"></div></div></div>
+        <div class="skill"><span>React.js</span><div class="progress"><div class="progress-bar" data-percent="50"></div></div></div>
+        <div class="skill"><span>Git & GitHub</span><div class="progress"><div class="progress-bar" data-percent="80"></div></div></div>
       </div>
     </div>
   </section>
@@ -238,33 +171,36 @@
     <p>© 2025 Arman Wiranda. Dibuat dengan semangat & kopi.</p>
   </footer>
 
-  <!-- Typed.js -->
+  <!-- Script: Typed.js -->
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script>
-    new Typed(".typing", {
+    const typed = new Typed(".typing", {
       strings: ["Arman Wiranda", "Junior Web Developer", "Laravel Enthusiast"],
       typeSpeed: 60,
-      backSpeed: 40,
-      backDelay: 1500,
-      loop: true
+      backSpeed: 0,
+      backDelay: 3000,
+      loop: true,
+      smartBackspace: false,
+      showCursor: true,
+      fadeOut: false
     });
   </script>
 
-  <!-- Intersection Observer -->
+  <!-- Scroll Animations -->
   <script>
-    const observer = new IntersectionObserver((entries) => {
+    // Section fade-in
+    const sections = document.querySelectorAll('.section');
+    const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
-          observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.3 });
 
-    document.querySelectorAll('.section').forEach(section => {
-      observer.observe(section);
-    });
+    sections.forEach(sec => sectionObserver.observe(sec));
 
+    // Skill bar animation
     const skillSection = document.querySelector('#skills');
     const progressBars = document.querySelectorAll('.progress-bar');
 
