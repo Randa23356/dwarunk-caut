@@ -151,6 +151,18 @@ body {
     transform: translateY(0);
   }
 }
+
+    .scroll-fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease-out;
+}
+
+.scroll-fade.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+    
   </style>
 </head>
 <body>
@@ -162,14 +174,14 @@ body {
     </div>
   </header>
 
-  <section id="about" class="section">
+  <section id="about" class="section scroll-fade">
     <div class="container">
       <h2 class="section-title">Tentang Saya</h2>
       <p>Saya adalah seorang developer muda asal Lombok, fokus pada pengembangan web menggunakan Laravel dan JavaScript. Saat ini sedang kuliah di jurusan Teknik Informatika dan aktif dalam berbagai proyek software.</p>
     </div>
   </section>
 
-  <section id="experience" class="section alt">
+  <section id="experience" class="section alt scroll-fade">
     <div class="container">
       <h2 class="section-title">Pengalaman</h2>
       <ul>
@@ -183,7 +195,7 @@ body {
  <section id="skills">
 <section id="skills" class="section">
   <div class="container">
-    <h2 class="section-title">Skills</h2>
+    <h2 class="section-title ">Skills</h2>
     <div class="skills-list">
       <div class="skill">
         <span>Laravel</span>
@@ -248,6 +260,19 @@ const skillObserver = new IntersectionObserver(entries => {
 }, { threshold: 0.3 });
 
 skillObserver.observe(skillSection);
+
+    // Animasi scroll muncul untuk teks
+const scrollElements = document.querySelectorAll('.scroll-fade');
+
+const observerScrollFade = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+    }
+  });
+}, { threshold: 0.3 });
+
+scrollElements.forEach(el => observerScrollFade.observe(el));
   </script>
 </body>
 </html>
