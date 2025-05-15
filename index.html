@@ -5,6 +5,107 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portofolio Arman Wiranda</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    :root {
+  --primary: #0f172a;
+  --accent: #38bdf8;
+  --light: #f8fafc;
+  --dark: #1e293b;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--primary);
+  color: var(--light);
+  scroll-behavior: smooth;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.hero {
+  background: linear-gradient(to right, #0f172a, #1e40af);
+  text-align: center;
+  padding: 5rem 2rem;
+  animation: fadeInUp 1s ease-out;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+}
+
+.hero span {
+  color: var(--accent);
+}
+
+.section {
+  background: var(--primary);
+  padding: 4rem 2rem;
+}
+
+.section.alt {
+  background: var(--dark);
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.skill-card {
+  background: #1e293b;
+  border: 1px solid var(--accent);
+  padding: 1rem;
+  text-align: center;
+  border-radius: 8px;
+  transition: transform 0.3s;
+  cursor: default;
+}
+
+.skill-card:hover {
+  transform: scale(1.05);
+  background: var(--accent);
+  color: var(--primary);
+}
+
+.footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.9rem;
+  background: #0f172a;
+  color: #94a3b8;
+}
+
+/* Animations */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s forwards;
+}
+
+.fade-in.delay-1 {
+  animation-delay: 0.5s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+  </style>
 </head>
 <body>
   <header class="hero">
@@ -53,5 +154,19 @@
   </footer>
 
   <script src="script.js"></script>
+  <script> 
+    // Animasi saat scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('fade-in');
+    }
+  });
+});
+
+document.querySelectorAll('.section').forEach(section => {
+  observer.observe(section);
+});
+  </script>
 </body>
 </html>
