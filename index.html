@@ -141,7 +141,8 @@
       color: #94a3b8;
     }
 
-    body.focusing .section:not(.focused) {
+    body.focusing .section:not(.focused),
+body.focusing .hero {
   opacity: 0.1;
   filter: blur(2px);
   pointer-events: none;
@@ -152,6 +153,11 @@
   z-index: 10;
   position: relative;
 }
+    body.focusing .footer {
+  opacity: 0.1;
+  filter: blur(2px);
+  pointer-events: none;
+    }
   </style>
 </head>
 <body>
