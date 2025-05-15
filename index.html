@@ -13,6 +13,10 @@
       --dark: #1e293b;
     }
 
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -23,7 +27,7 @@
 
     .container {
       max-width: 960px;
-      margin: 0 auto;
+      margin: auto;
       padding: 2rem;
     }
 
@@ -33,30 +37,12 @@
       padding: 5rem 2rem;
       opacity: 0;
       transform: translateY(40px);
-      transition: opacity 1s ease, transform 1s ease;
+      transition: 1s ease;
     }
 
     .hero.active {
       opacity: 1;
       transform: translateY(0);
-    }
-
-    .typing-box {
-      font-size: 1.2rem;
-      margin-top: 2rem;
-    }
-
-    .typing-box h2,
-    .typing-box p {
-      margin: 0;
-      color: #fff;
-      display: inline;
-    }
-
-    .name-highlight {
-      color: var(--accent);
-      font-style: italic;
-      font-weight: bold;
     }
 
     .profile-pic {
@@ -67,8 +53,7 @@
       border: 4px solid var(--accent);
       margin: 1rem auto 2rem;
       display: block;
-      transition: transform 0.4s ease, box-shadow 0.4s;
-      box-shadow: 0 0 0 0 var(--accent);
+      transition: transform 0.4s, box-shadow 0.4s;
     }
 
     .profile-pic:hover {
@@ -76,12 +61,23 @@
       box-shadow: 0 0 20px 6px var(--accent);
     }
 
+    .typing-box {
+      font-size: 1.2rem;
+      margin-top: 2rem;
+    }
+
+    .name-highlight {
+      color: var(--accent);
+      font-style: italic;
+      font-weight: bold;
+    }
+
     .section {
       padding: 4rem 2rem;
       background: var(--primary);
       opacity: 0;
       transform: translateY(40px);
-      transition: opacity 1s ease, transform 1s ease;
+      transition: 1s ease;
     }
 
     .section.alt {
@@ -91,12 +87,6 @@
     .section.active {
       opacity: 1;
       transform: translateY(0);
-    }
-
-    .section:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
-      transition: all 0.3s ease;
     }
 
     .section-title {
@@ -142,21 +132,17 @@
     }
 
     body.focusing .section:not(.focused),
-body.focusing .hero {
-  opacity: 0.1;
-  filter: blur(2px);
-  pointer-events: none;
-  transition: all 0.3s ease;
-}
-
-.section.focused {
-  z-index: 10;
-  position: relative;
-}
+    body.focusing .hero,
     body.focusing .footer {
-  opacity: 0.1;
-  filter: blur(2px);
-  pointer-events: none;
+      opacity: 0.1;
+      filter: blur(2px);
+      pointer-events: none;
+      transition: 0.3s ease;
+    }
+
+    .section.focused {
+      z-index: 10;
+      position: relative;
     }
   </style>
 </head>
@@ -193,7 +179,6 @@ body.focusing .hero {
   <div class="container">
     <h2 class="section-title">Skills</h2>
     <div class="skills-list">
-      <!-- Gunakan data-percent untuk animasi -->
       <div class="skill"><span>Laravel</span><div class="progress"><div class="progress-bar" data-percent="95"></div></div></div>
       <div class="skill"><span>PHP Native</span><div class="progress"><div class="progress-bar" data-percent="90"></div></div></div>
       <div class="skill"><span>JavaScript</span><div class="progress"><div class="progress-bar" data-percent="90"></div></div></div>
@@ -214,26 +199,21 @@ body.focusing .hero {
 <!-- Script -->
 <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 <script>
-  const animateOnScroll = (selector, callback) => {
+  const observeFadeIn = (selector, callback = null) => {
     const elements = document.querySelectorAll(selector);
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
-          callback?.(entry.target);
-        } else {
-          entry.target.classList.remove('active');
+          if (callback) callback(entry.target);
         }
       });
     }, { threshold: 0.3 });
     elements.forEach(el => observer.observe(el));
   };
 
-  // Start typing animation
-  let typedInstance;
   const startTyping = () => {
-    if (typedInstance) typedInstance.destroy();
-    typedInstance = new Typed(".typing", {
+    new Typed(".typing", {
       strings: [`<h2>Halo, Saya <span class='name-highlight'>Arman Wiranda</span></h2><br><p>Junior Developer | Laravel Enthusiast</p>`],
       typeSpeed: 50,
       backSpeed: 0,
@@ -242,35 +222,28 @@ body.focusing .hero {
     });
   };
 
-  // Run animations
-  animateOnScroll('.hero', () => startTyping());
-  animateOnScroll('.section');
-
-  // Skill bar animation
-  const skillSection = document.querySelector('#skills');
-  const progressBars = document.querySelectorAll('.progress-bar');
-  const skillObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      progressBars.forEach(bar => {
-        bar.style.width = entry.isIntersecting ? bar.dataset.percent + '%' : '0';
-      });
+  const animateSkills = () => {
+    const bars = document.querySelectorAll('.progress-bar');
+    bars.forEach(bar => {
+      bar.style.width = bar.dataset.percent + '%';
     });
-  }, { threshold: 0.3 });
-  skillObserver.observe(skillSection);
+  };
 
-  const sections = document.querySelectorAll('.section');
-
-sections.forEach(section => {
-  section.addEventListener('mouseenter', () => {
-    document.body.classList.add('focusing');
-    section.classList.add('focused');
+  observeFadeIn('.hero', startTyping);
+  observeFadeIn('.section', el => {
+    if (el.id === 'skills') animateSkills();
   });
 
-  section.addEventListener('mouseleave', () => {
-    document.body.classList.remove('focusing');
-    section.classList.remove('focused');
+  document.querySelectorAll('.section').forEach(section => {
+    section.addEventListener('mouseenter', () => {
+      document.body.classList.add('focusing');
+      section.classList.add('focused');
+    });
+    section.addEventListener('mouseleave', () => {
+      document.body.classList.remove('focusing');
+      section.classList.remove('focused');
+    });
   });
-});
 </script>
 </body>
 </html>
